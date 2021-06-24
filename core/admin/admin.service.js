@@ -1,11 +1,13 @@
+
+
 class AdminService {
   constructor() {};
 
-  getAuthParams(ctx) {
+  async registration({ id, first_name, last_name, username }) {
 
   }
 
-  auth(id, password) {
+  async auth(id, password) {
     
   }
 };

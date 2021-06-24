@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "create-admin": "node cli.js create-admin"
   },
   "dependencies": {
     "@prisma/client": "^2.25.0",
