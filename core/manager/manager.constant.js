@@ -1,0 +1,1 @@
+export const MANAGER_ACTION_NAME = 'start';
