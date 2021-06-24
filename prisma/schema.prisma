@@ -2,8 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 datasource db {
-  provider = env("DB_PROVIDER")
-  url      = "${env("DB_PROVIDER")}://${env("POSTGRES_USER")}:${env("POSTGRES_PASSWORD")}@${env("DB_HOST")}:${"DB_PORT"}/${env("POSTGRES_DB")}"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 generator client {
@@ -16,5 +16,5 @@ model Admin {
   last_name   String
   username    String
   password    String?
-  telegram_id Int
+  telegram_id Int @unique
 }
