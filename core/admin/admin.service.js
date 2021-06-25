@@ -18,12 +18,14 @@ class AdminService {
     return !!(await this.#findAdminByTelegramId(id));
   }
 
-  async login(id, password) {
-    const candidate = await this.#findAdminByTelegramId(id);
-    if (candidate && isHashComparedHelper(password, candidate.password)) { 
-      setAuthAdminCacheHelper(id, { auth: true, ...candidate });
+  async login(telegram_id, password) {
+    const candidate = await this.#findAdminByTelegramId(telegram_id);
+    if (isHashComparedHelper(password, candidate.password)) { 
+      setAuthAdminCacheHelper({ auth: true, ...candidate });
+      return true;
+    } else {
+      return false;
     }
-    return candidate;
   }
 
   async #findAdminByTelegramId(telegram_id) {
