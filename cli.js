@@ -1,6 +1,6 @@
 import Prisma from '@prisma/client';
 
-import { hashHelper } from './lib/bcrypt/index.js';
+import { getHashHelper } from './lib/bcrypt/index.js';
 
 const { PrismaClient } = Prisma;
 
@@ -12,8 +12,8 @@ async function start() {
   switch (process.argv[2]) {
     case 'set-admin-password':
       if (passwordIndex === -1) throw Error('Не указан password');
-      if (idIndex === -1) throw Error('Не указан id, для которого нужно создатб пароль');
-      const password = hashHelper(process.argv[passwordIndex+1]);
+      if (idIndex === -1) throw Error('Не указан id, для которого нужно создать пароль');
+      const password = getHashHelper(process.argv[passwordIndex+1]);
       const telegram_id = +process.argv[idIndex+1];
       await prisma.admin.update({ where: { telegram_id }, data: { password } });
       break;
@@ -23,7 +23,7 @@ async function start() {
 };
 
 start().catch(e => {
-  throw e
+  throw e;
 }).finally(async () => {
-  await prisma.$disconnect()
+  await prisma.$disconnect();
 });

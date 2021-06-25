@@ -1,5 +1,7 @@
 import Prisma from '@prisma/client';
 
+import { isHashComparedHelper } from '../../lib/bcrypt/index.js';
+
 const { PrismaClient } = Prisma;
 
 class AdminService {
@@ -13,17 +15,15 @@ class AdminService {
     return !!(await this.#findAdminByTelegramId(id));
   }
 
-  async auth(id, password) {
+  async login(id, password) {
     const candidate = await this.#findAdminByTelegramId(id);
-    if (candidate && candidate.password === password) {
-      return candidate;
-    }
-    return null;
+    return isHashComparedHelper(password, candidate.password) ? candidate : null;
   }
 
   async #findAdminByTelegramId(id) {
     return this.db.admin.findUnique({ where: { telegram_id: id } });
   }
+
 };
 
 export const adminService = new AdminService(); 

@@ -10,8 +10,9 @@ export const adminCommand = async function(ctx) {
   messageIds.push((await this.sendMessage(id, text)).message_id);
   this.once('message', async (ctx) => {
     const password = ctx.text;
-    let authStatus = await adminService.auth(id, password);
-    if (authStatus) {
+    let admin = await adminService.login(id, password);
+    if (admin) {
+      console.log(admin);
       await this.sendMessage(id, 'hello');
     } else {
       adminCommand.bind(this)(ctx);
