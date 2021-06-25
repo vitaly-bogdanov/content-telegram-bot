@@ -12,7 +12,6 @@ export const adminCommand = async function(ctx) {
     const password = ctx.text;
     let admin = await adminService.login(id, password);
     if (admin) {
-      console.log(admin);
       await this.sendMessage(id, 'hello');
     } else {
       adminCommand.bind(this)(ctx);
