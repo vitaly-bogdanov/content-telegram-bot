@@ -1,0 +1,1 @@
+export { MAILING_ACTION_NAME } from './mailing.constant.js';

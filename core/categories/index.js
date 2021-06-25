@@ -1,0 +1,1 @@
+export { CATEGORIES_ACTION_NAME } from './categories.constant.js'

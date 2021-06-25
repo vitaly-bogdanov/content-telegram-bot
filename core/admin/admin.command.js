@@ -1,5 +1,6 @@
 import { getUserHelper } from '../../lib/telegram/index.js';
 import { adminService } from './admin.service.js';
+import { mainAdminKeyboard } from './admin.keyboard.js';
 
 export const adminCommand = async function(ctx) {
   let messageIds = [];
@@ -12,7 +13,7 @@ export const adminCommand = async function(ctx) {
     const password = ctx.text;
     let admin = await adminService.login(id, password);
     if (admin) {
-      await this.sendMessage(id, 'hello');
+      messageIds.push(await this.sendMessage(id, 'Главное меню', mainAdminKeyboard));
     } else {
       adminCommand.bind(this)(ctx);
     }
