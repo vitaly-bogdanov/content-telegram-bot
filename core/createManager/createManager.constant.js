@@ -1,0 +1,1 @@
+export const CREATE_MANAGER_ACTION_NAME = 'createManager';

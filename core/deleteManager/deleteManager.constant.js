@@ -1,0 +1,1 @@
+export const DELETE_MANAGER_ACTION_NAME = 'deleteManager';
