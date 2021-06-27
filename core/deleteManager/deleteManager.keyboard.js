@@ -1,6 +1,6 @@
 import { MAILING_ACTION_NAME } from '../mailing/index.js';
 
-export const mainCraeteManagerKeyboard = {
+export const mainDeleteManagerKeyboard = {
   reply_markup: {
     inline_keyboard: [
       [

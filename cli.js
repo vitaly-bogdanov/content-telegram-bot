@@ -3,9 +3,7 @@ import Prisma from '@prisma/client';
 import { getHashHelper } from './lib/bcrypt/index.js';
 
 const { PrismaClient } = Prisma;
-
 const prisma = new PrismaClient();
-
 async function start() {
   const passwordIndex = process.argv.indexOf('--password');
   const idIndex = process.argv.indexOf('--id');
@@ -17,6 +15,8 @@ async function start() {
       const telegram_id = +process.argv[idIndex+1];
       await prisma.admin.update({ where: { telegram_id }, data: { password } });
       break;
+      
+    //...
     default:
       throw Error('Command error')
   }
