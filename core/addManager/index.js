@@ -1,2 +1,2 @@
-export { addManagerQuery } from './createManager.query.js';
-export { ADD_MANAGER_ACTION_NAME } from './createManager.constant.js';
+export { addManagerQuery } from './addManager.query.js';
+export { ADD_MANAGER_ACTION_NAME } from './addManager.constant.js';
