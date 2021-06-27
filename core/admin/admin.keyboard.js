@@ -5,8 +5,8 @@ export const mainAdminKeyboard = {
   reply_markup: {
     inline_keyboard: [
       [
-        { text: 'Категории', callback_data: CATEGORIES_ACTION_NAME },
-        { text: 'Рассылка', callback_data: MAILING_ACTION_NAME }
+        { text: 'Категории 🗂', callback_data: CATEGORIES_ACTION_NAME },
+        { text: 'Рассылка 💬', callback_data: MAILING_ACTION_NAME }
       ]
     ]
   }

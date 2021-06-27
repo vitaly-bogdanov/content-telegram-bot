@@ -10,7 +10,7 @@ export const addManagerQuery = async function(ctx) {
   await deleteMessagesHelper(this, id, cacheMessageIds);
   clearCacheMessageIdsHelper(id);
 
-  let msgId1 = (await this.sendMessage(id, 'Добавление. Введите ID менеджера', mainAddManagerKeyboard)).message_id;
+  let msgId1 = (await this.sendMessage(id, 'Добавление. Введите ID менеджера 👇', mainAddManagerKeyboard)).message_id;
   setCacheMessageIdsHelper(id, [msgId1]);
 
   this.once('message', async (ctx) => {
@@ -19,7 +19,7 @@ export const addManagerQuery = async function(ctx) {
     const managerTelegramId = +ctx.text;
     if (await addManagerService.isManagerRegistered(managerTelegramId)) {
       await addManagerService.confirmedByTelegramId(managerTelegramId);
-      let msgId3 = (await this.sendMessage(id, 'Менеджер успешно добавден!')).message_id;
+      let msgId3 = (await this.sendMessage(id, 'Менеджер успешно добавден 👍')).message_id;
       setCacheMessageIdsHelper(id, [msgId3]);
     } else {
       let msgId4 = (await this.sendMessage(id, 'Кажется такого пользователя нет в боте!\nПроверь правильность написания ID')).message_id;
