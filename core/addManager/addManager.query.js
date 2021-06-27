@@ -16,12 +16,17 @@ export const addManagerQuery = async function(ctx) {
   this.once('message', async (ctx) => {
     let msgId2 = ctx.message_id;
     setCacheMessageIdsHelper(id, [msgId2]);
-    const managerTelegramId = ctx.text;
-
-    let result = await addManagerService.confirmedByTelegramId(managerTelegramId);
-
-    console.log(result);
-    // проверить есть ли id
-    // если есть то
+    const managerTelegramId = +ctx.text;
+    if (await addManagerService.isManagerRegistered(managerTelegramId)) {
+      await addManagerService.confirmedByTelegramId(managerTelegramId);
+      let msgId3 = (await this.sendMessage(id, 'Менеджер успешно добавден!')).message_id;
+      setCacheMessageIdsHelper(id, [msgId3]);
+    } else {
+      let msgId4 = (await this.sendMessage(id, 'Кажется такого пользователя нет в боте!\nПроверь правильность написания ID')).message_id;
+      setCacheMessageIdsHelper(id, [msgId4]);
+    }
+    setTimeout(() => {
+      addManagerQuery.bind(this)(ctx);
+    }, 1500);
   });
 };
