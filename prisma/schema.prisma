@@ -11,10 +11,19 @@ generator client {
 }
 
 model Admin {
-  id          Int @id @default(autoincrement())
+  id          Int    @id @default(autoincrement())
   first_name  String
   last_name   String
   username    String
   password    String?
-  telegram_id Int @unique
+  telegram_id Int    @unique
+}
+
+model Manager {
+  id          Int     @id @default(autoincrement())
+  first_name  String
+  last_name   String
+  username    String
+  confirmed   Boolean @default(false)
+  telegram_id Int     @unique
 }
