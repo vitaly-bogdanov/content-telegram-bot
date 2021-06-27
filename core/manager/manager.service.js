@@ -8,6 +8,15 @@ class ManagerService {
   async registration({ id, first_name, last_name, username }) {
     return this.db.manager.create({ data: { telegram_id: id, first_name, last_name, username } });
   }
+
+  async isRegistered(telegram_id) {
+    return !!(await this.#findManagerByTelegramId(telegram_id));
+  }
+
+  async #findManagerByTelegramId(telegram_id) {
+    return this.db.admin.findUnique({ where: { telegram_id } }); 
+  }
+  
 }
 
 export const managerService = new ManagerService();

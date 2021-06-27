@@ -3,3 +3,4 @@ import { managerBot, commandManagerBot } from './main/managerBot/index.js';
 
 adminBot.on('message', commandAdminBot.bind(adminBot));
 adminBot.on('callback_query', queryAdminBot.bind(adminBot));
+managerBot.on('message', commandManagerBot.bind(managerBot));

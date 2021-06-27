@@ -1,8 +1,10 @@
 import { getUserHelper } from '../../lib/telegram/telegram.helpers.js'
+import { managerService } from './manager.service.js';
 
 export const managerCommand = async function(ctx) {
-  const messageIds = [];
-  const chatId = getUserHelper(ctx);
-
-  messageIds.push((await this.sendMessage(chatId, 'kkkkk')).message_id);
+  const { id, first_name, last_name, username } = getUserHelper(ctx);
+  const isRegistered = await managerService.isRegistered(id);
+  if (!isRegistered) await managerService.registration({ id, first_name, last_name, username });
+  const text = `Добро пожаловать!\nваш ID: ${id}`;
+  let msgId1 = (await this.sendMessage(id, text)).message_id;
 };
