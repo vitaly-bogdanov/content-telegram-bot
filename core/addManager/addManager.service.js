@@ -2,7 +2,7 @@ import Prisma from '@prisma/client';
 
 const { PrismaClient } = Prisma;
 
-class CreateManagerService {
+class AddManagerService {
   constructor() { this.db = new PrismaClient() }
 
   async add(telegram_id) {
@@ -15,4 +15,4 @@ class CreateManagerService {
 
 };
 
-export const createManagerService = new CreateManagerService();
+export const createManagerService = new AddManagerService();
