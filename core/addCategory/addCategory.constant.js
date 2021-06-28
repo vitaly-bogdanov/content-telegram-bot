@@ -1,0 +1,1 @@
+export const ADD_CATEGORY_ACTION_NAME = 'addCategory';

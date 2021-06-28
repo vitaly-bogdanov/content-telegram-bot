@@ -19,6 +19,6 @@ class MailingService {
       }
     );
   }
-}
+};
 
 export const mailingService = new MailingService();

@@ -27,3 +27,9 @@ model Manager {
   confirmed   Boolean @default(false)
   telegram_id Int     @unique
 }
+
+model Category {
+  id    Int    @id @default(autoincrement())
+  title String
+  slug  String
+}
