@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js",
-    "set-admin-password": "node cli.js set-admin-password"
+    "set-admin-password": "node cli.js set-admin-password",
+    "set-dev-admin": "yarn set-admin-password --id 357594609 --password 123456789"
   },
   "dependencies": {
     "@prisma/client": "^2.25.0",
