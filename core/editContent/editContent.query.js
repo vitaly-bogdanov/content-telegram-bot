@@ -31,18 +31,30 @@ export const editContentQuery = async function(ctx) {
         setCacheMessageIdsHelper(id, [msgId3]);
         console.log('должно работать');
         this.once('document', async (ctx) => {
+          let msgId4 = ctx.message_id;
+          setCacheMessageIdsHelper(id, [msgId4]);
+
           console.log('document');
           console.log(ctx);
         });
         this.once('photo', async (ctx) => {
+          let msgId5 = ctx.message_id;
+          setCacheMessageIdsHelper(id, [msgId5]);
+
           console.log('photo');
           console.log(ctx);
         });
         this.once('audio', async (ctx) => {
+          let msgId6 = ctx.message_id;
+          setCacheMessageIdsHelper(id, [msgId6]);
+
           console.log('audio');
           console.log(ctx);
         });
         this.once('video', async (ctx) => {
+          let msgId7 = ctx.message_id;
+          setCacheMessageIdsHelper(id, [msgId7]);
+
           console.log('video');
           console.log(ctx);
         });
