@@ -20,7 +20,7 @@ class AdminService {
 
   async login(telegram_id, password) {
     const candidate = await this.#findAdminByTelegramId(telegram_id);
-    if (isHashComparedHelper(password, candidate.password)) { 
+    if (candidate.password && isHashComparedHelper(password, candidate.password)) { 
       setAuthAdminCacheHelper({ auth: true, ...candidate });
       return true;
     } else {

@@ -29,17 +29,16 @@ model Manager {
 }
 
 model Category {
-  id       Int    @id @default(autoincrement())
-  title    String @unique
-  slug     String
+  id       Int       @id @default(autoincrement())
+  title    String    @unique
   contents Content[]
 }
 
 model Content {
-  id          Int @id @default(autoincrement())
-  description String
-  file        String
-  slug        String
+  id          Int      @id @default(autoincrement())
+  description String   @unique
+  data        String 
+  format      String
   categoryId  Int
   category    Category @relation(fields: [categoryId], references: [id])
 }
