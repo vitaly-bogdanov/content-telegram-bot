@@ -6,7 +6,8 @@ import { CATEGORIES_ACTION_NAME, categoriesQuery } from '../../core/categories/i
 import { ADD_CATEGORY_ACTION_NAME, addCategoryQuery } from '../../core/addCategory/index.js';
 import { DELETE_CATEGORY_ACTION_NAME, deleteCategoryQuery } from '../../core/deleteCategory/index.js';
 import { CONTENT_ACTION_NAME, contentQuery } from '../../core/content/index.js';
-
+import { EDIT_CONTENT_ACTION_NAME, editContentQuery } from '../../core/editContent/index.js';
+import { ADD_CONTENT_ACTION_NAME, addContentQuery } from '../../core/addContent/index.js';
 
 import { getActionNameHelper } from '../../lib/telegram/index.js';
 
@@ -18,10 +19,12 @@ const queries = {
   [CATEGORIES_ACTION_NAME]: categoriesQuery,
   [ADD_CATEGORY_ACTION_NAME]: addCategoryQuery,
   [DELETE_CATEGORY_ACTION_NAME]: deleteCategoryQuery,
-  [CONTENT_ACTION_NAME]: contentQuery
+  [CONTENT_ACTION_NAME]: contentQuery,
+  [EDIT_CONTENT_ACTION_NAME]: editContentQuery,
+  [ADD_CONTENT_ACTION_NAME]: addContentQuery
 };
 
 export const queryAdminBot = async function(ctx) {
   const actionName = getActionNameHelper(ctx);
-  queries[actionName] && queries[actionName].bind(this)(ctx);
+  actionName && queries[actionName] && queries[actionName].bind(this)(ctx);
 };

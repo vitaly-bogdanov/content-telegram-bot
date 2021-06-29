@@ -16,6 +16,6 @@ export const contentQuery = async function(ctx) {
   }
   setCacheMessageIdsHelper(id, msgIds);
 
-  let msgId1 = (await this.sendMessage(id, `Контент категории: ${categoryTitle}`, mainContentKeyboard)).message_id;
+  let msgId1 = (await this.sendMessage(id, categoryTitle, mainContentKeyboard)).message_id;
   setCacheMessageIdsHelper(id, [msgId1]);
 };

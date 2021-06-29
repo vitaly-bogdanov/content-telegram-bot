@@ -6,6 +6,6 @@ const commands = {
 };
 
 export const commandAdminBot = function(ctx) {
-	const actionName = getActionNameHelper(ctx); // получаем название команды
-	commands[actionName] && commands[actionName].bind(this)(ctx);
+	const actionName = getActionNameHelper(ctx);
+	actionName && commands[actionName] && commands[actionName].bind(this)(ctx);
 };

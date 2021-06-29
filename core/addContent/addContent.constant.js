@@ -1,1 +1,1 @@
-export const ADD_CONTENT_ACTION = 'addContent';
+export const ADD_CONTENT_ACTION_NAME = 'addContent';

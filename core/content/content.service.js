@@ -1,7 +1,5 @@
 import Prisma from '@prisma/client';
 
-import { getUserHelper, clearMessageAndOnceEventsHepler } from '../../lib/telegram/index.js';
-
 const { PrismaClient } = Prisma;
 
 class ContentService {
