@@ -15,11 +15,11 @@ export const mainCategoriesKeyboard = {
   }
 };
 
-export const categoryConfigKeyboard = (callback_data) => ({
+export const categoryConfigKeyboard = (text) => ({
   reply_markup: {
     inline_keyboard: [
       [
-        { text: 'Обзор', callback_data }
+        { text, callback_data: 'content' }
       ]
     ]
   }

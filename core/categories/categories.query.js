@@ -10,7 +10,7 @@ export const categoriesQuery = async function(ctx) {
   const categories = await categoriesService.getCategories();
   let msgIds = [];
   for (let category of categories) {
-    let msgId = (await this.sendMessage(id, category.title, categoryConfigKeyboard(category.slug))).message_id;
+    let msgId = (await this.sendMessage(id, category.title, categoryConfigKeyboard(category.title))).message_id;
     msgIds.push(msgId);
   }
   setCacheMessageIdsHelper(id, msgIds);

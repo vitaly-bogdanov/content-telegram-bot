@@ -5,8 +5,10 @@ import { DELETE_MANAGER_ACTION_NAME, deleteManagerQuery } from '../../core/delet
 import { CATEGORIES_ACTION_NAME, categoriesQuery } from '../../core/categories/index.js';
 import { ADD_CATEGORY_ACTION_NAME, addCategoryQuery } from '../../core/addCategory/index.js';
 import { DELETE_CATEGORY_ACTION_NAME, deleteCategoryQuery } from '../../core/deleteCategory/index.js';
+import { CONTENT_ACTION_NAME, contentQuery } from '../../core/content/index.js';
 
-import { getActionNameHelper, getUserHelper } from '../../lib/telegram/index.js';
+
+import { getActionNameHelper } from '../../lib/telegram/index.js';
 
 const queries = {
   [ADMIN_ACTION_NAME]: adminQuery,
@@ -15,11 +17,11 @@ const queries = {
   [DELETE_MANAGER_ACTION_NAME]: deleteManagerQuery,
   [CATEGORIES_ACTION_NAME]: categoriesQuery,
   [ADD_CATEGORY_ACTION_NAME]: addCategoryQuery,
-  [DELETE_CATEGORY_ACTION_NAME]: deleteCategoryQuery
+  [DELETE_CATEGORY_ACTION_NAME]: deleteCategoryQuery,
+  [CONTENT_ACTION_NAME]: contentQuery
 };
 
 export const queryAdminBot = async function(ctx) {
-  const { id } = getUserHelper(ctx);
   const actionName = getActionNameHelper(ctx);
   queries[actionName] && queries[actionName].bind(this)(ctx);
 };

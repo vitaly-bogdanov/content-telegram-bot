@@ -7,8 +7,9 @@ const { PrismaClient } = Prisma;
 class ContentService {
   constructor() { this.db = new PrismaClient() }
 
-  getContentByCategory(category) {
-    
+  async getContentByCategoryTitle(title) {
+    const category = await this.db.category.findUnique({ where: { title }, include: { contents: true } });
+    return category.contents;
   }
 
 };
