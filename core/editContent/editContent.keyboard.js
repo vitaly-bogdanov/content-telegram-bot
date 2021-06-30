@@ -1,7 +1,7 @@
 import { EDIT_CONTENT_QUERY_TYPE } from './editContent.constant.js';
-import { CATEGORIES_ACTION_NAME } from '../categories/index.js';
+import { CONTENT_ACTION_NAME } from '../content/index.js';
 
-export const mainEditContentKeyboard = (categoryName) => ({
+export const mainEditContentKeyboard = {
   reply_markup: {
     inline_keyboard: [
       [
@@ -9,8 +9,8 @@ export const mainEditContentKeyboard = (categoryName) => ({
         { text: 'Изменить контент', callback_data: EDIT_CONTENT_QUERY_TYPE.CONTENT }
       ],
       [
-        { text: 'Назад 🔙', callback_data: CATEGORIES_ACTION_NAME }
+        { text: 'Назад 🔙', callback_data: 'content' }
       ]
     ]
   }
-})
+};

@@ -6,15 +6,13 @@ import { editContentService } from './editContent.service.js';
 
 export const editContentQuery = async function(ctx) {
   const { id } = getUserHelper(ctx);
-  const initCtx = ctx;
+  let initCtx = ctx;
   const contentDescription = ctx.message.text;
   await clearMessageAndOnceEventsHepler(this, id);
-
-  // const categoryTitle = editContentService
-
-  let msgId1 = (await this.sendMessage(id, contentDescription, mainEditContentKeyboard)).message_id;
-  setCacheMessageIdsHelper(id, [msgId1]);
-
+  const categoryTitle = await editContentService.getCategoryTitleByContentDescription(contentDescription);
+  let msgId0 = (await this.sendMessage(id, `Описание: ${contentDescription}`)).message_id;
+  let msgId1 = (await this.sendMessage(id, categoryTitle, mainEditContentKeyboard)).message_id;
+  setCacheMessageIdsHelper(id, [msgId0, msgId1]);
   this.once('callback_query', async (ctx) => {
     const queryType = ctx.data;
     switch (queryType) {
@@ -22,61 +20,62 @@ export const editContentQuery = async function(ctx) {
         let msgId2 = (await this.sendMessage(id, 'Введите новое описание:')).message_id;
         setCacheMessageIdsHelper(id, [msgId2]);
         this.once('message', async (ctx) => {
-          const newDescription = ctx.text;
-          await editContentService.addNewDescription({ oldDescription: contentDescription, newDescription });
-          let msgId3 = (await this.sendMessage(id, 'Готово')).message_id;
+          let msgId3 = ctx.message_id;
           setCacheMessageIdsHelper(id, [msgId3]);
+          const newDescription = ctx.text;
+          let content = await editContentService.addNewDescription({ oldDescription: contentDescription, newDescription });
+          let msgId4 = (await this.sendMessage(id, 'Готово')).message_id;
+          setCacheMessageIdsHelper(id, [msgId4]);
+          initCtx.message.text = content.description;
           setTimeout(() => { editContentQuery.bind(this)(initCtx) }, 1500);
         });
         break;
       case EDIT_CONTENT_QUERY_TYPE.CONTENT:
-        let msgId4 = (await this.sendMessage(id, 'Добавьте новый контент(видео, фото, аудио, документ):')).message_id;
-        setCacheMessageIdsHelper(id, [msgId4]);
-        console.log('должно работать');
+        let msgId5 = (await this.sendMessage(id, 'Добавьте новый контент(видео, фото, аудио, документ):')).message_id;
+        setCacheMessageIdsHelper(id, [msgId5]);
         this.once('document', async (ctx) => {
-          let msgId5 = ctx.message_id;
-          setCacheMessageIdsHelper(id, [msgId5]);
+          let msgId6 = ctx.message_id;
+          setCacheMessageIdsHelper(id, [msgId6]);
           const data = ctx.document.file_id;
           await editContentService.addNewContent({ description: contentDescription, data, format: 'document' });
-          let msgId6 = (await this.sendMessage(id, 'Готово')).message_id;
-          setCacheMessageIdsHelper(id, [msgId6]);
+          let msgId7 = (await this.sendMessage(id, 'Готово')).message_id;
+          setCacheMessageIdsHelper(id, [msgId7]);
           setTimeout(() => { editContentQuery.bind(this)(initCtx) }, 1500);
         });
         this.once('photo', async (ctx) => {
-          let msgId7 = ctx.message_id;
-          setCacheMessageIdsHelper(id, [msgId7]);
+          let msgId8 = ctx.message_id;
+          setCacheMessageIdsHelper(id, [msgId8]);
           const data = ctx.photo[0].file_id;
           await editContentService.addNewContent({ description: contentDescription, data, format: 'photo' });
-          let msgId8 = (await this.sendMessage(id, 'Готово')).message_id;
-          setCacheMessageIdsHelper(id, [msgId8]);
+          let msgId9 = (await this.sendMessage(id, 'Готово')).message_id;
+          setCacheMessageIdsHelper(id, [msgId9]);
           setTimeout(() => { editContentQuery.bind(this)(initCtx) }, 1500);
         });
         this.once('audio', async (ctx) => {
-          let msgId9 = ctx.message_id;
-          setCacheMessageIdsHelper(id, [msgId9]);
+          let msgId10 = ctx.message_id;
+          setCacheMessageIdsHelper(id, [msgId10]);
           const data = ctx.audio.file_id;
           await editContentService.addNewContent({ description: contentDescription, data, format: 'audio' });
-          let msgId10 = (await this.sendMessage(id, 'Готово')).message_id;
-          setCacheMessageIdsHelper(id, [msgId10]);
+          let msgId11 = (await this.sendMessage(id, 'Готово')).message_id;
+          setCacheMessageIdsHelper(id, [msgId11]);
           setTimeout(() => { editContentQuery.bind(this)(initCtx) }, 1500);
         });
         this.once('video', async (ctx) => {
-          let msgId11 = ctx.message_id;
-          setCacheMessageIdsHelper(id, [msgId11]);
+          let msgId12 = ctx.message_id;
+          setCacheMessageIdsHelper(id, [msgId12]);
           const data = ctx.video.file_id;
           await editContentService.addNewContent({ description: contentDescription, data, format: 'video' });
-          let msgId12 = (await this.sendMessage(id, 'Готово')).message_id;
-          setCacheMessageIdsHelper(id, [msgId12]);
+          let msgId13 = (await this.sendMessage(id, 'Готово')).message_id;
+          setCacheMessageIdsHelper(id, [msgId13]);
           setTimeout(() => { editContentQuery.bind(this)(initCtx) }, 1500);
         });
-
         this.once('text', async (ctx) => {
-          let msgId13 = ctx.message_id;
-          setCacheMessageIdsHelper(id, [msgId13]);
+          let msgId14 = ctx.message_id;
+          setCacheMessageIdsHelper(id, [msgId14]);
           const data = ctx.text;
           await addContentService.create({ categoryTitle, description, data, format: 'text' });
-          let msgId14 = (await this.sendMessage(id, 'Готово')).message_id;
-          setCacheMessageIdsHelper(id, [msgId14]);
+          let msgId15 = (await this.sendMessage(id, 'Готово')).message_id;
+          setCacheMessageIdsHelper(id, [msgId15]);
           setTimeout(() => {editContentQuery.bind(this)(initCtx) }, 1500);
         });
         break;
