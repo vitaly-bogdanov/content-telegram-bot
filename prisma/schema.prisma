@@ -26,15 +26,16 @@ model Manager {
   username    String
   confirmed   Boolean    @default(false)
   telegram_id Int        @unique
-  schedule    Schedule[]
+  schedulers  Schedule[]
   contents    ManagerContent[]
 }
 
 model Schedule {
-  id        Int @id @default(autoincrement())
-  day       String
+  id        Int     @id @default(autoincrement())
+  dayName   String
+  dayNumber Int
   times     Time[]
-  managerId Int
+  managerId Int     @unique
   manager   Manager @relation(fields: [managerId], references: [id])
 }
 
@@ -43,8 +44,8 @@ model Time {
   value      String
   scheduleId Int
   schedule   Schedule @relation(fields: [scheduleId], references: [id])
-  categoryId Int
-  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int?
+  category   Category? @relation(fields: [categoryId], references: [id])
 }
 
 model Category {

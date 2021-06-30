@@ -14,7 +14,7 @@ class ManagerService {
   }
 
   async #findManagerByTelegramId(telegram_id) {
-    return this.db.admin.findUnique({ where: { telegram_id } }); 
+    return this.db.manager.findUnique({ where: { telegram_id } }); 
   }
   
 }
