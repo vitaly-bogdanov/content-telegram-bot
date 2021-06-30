@@ -6,7 +6,7 @@ export const mainAdminKeyboard = {
     inline_keyboard: [
       [
         { text: 'Категории 🗂', callback_data: CATEGORIES_ACTION_NAME },
-        { text: 'Рассылка 💬', callback_data: MAILING_ACTION_NAME }
+        { text: 'Рассылка 💬', callback_data: MAILING_ACTION_NAME, message: '11111' }
       ]
     ]
   }

@@ -22,15 +22,15 @@ class AddManagerService {
       where: { telegram_id }, 
       data: { 
         confirmed: true, 
-        schedulers: {
+        schedules: {
           create: [
-            { dayNumber: 1, dayName: 'Понедельник', times: { create: this.initialTimes } },
-            { dayNumber: 2, dayName: 'Вторник',     times: { create: this.initialTimes } },
-            { dayNumber: 3, dayName: 'Среда',       times: { create: this.initialTimes } },
-            { dayNumber: 4, dayName: 'Четверг',     times: { create: this.initialTimes } },
-            { dayNumber: 5, dayName: 'Пятница',     times: { create: this.initialTimes } },
-            { dayNumber: 6, dayName: 'Суббота',     times: { create: this.initialTimes } },
-            { dayNumber: 7, dayName: 'Воскресенье', times: { create: this.initialTimes } }
+            { dayNumber: 1, dayName: '--Понедельник--', times: { create: this.initialTimes } },
+            { dayNumber: 2, dayName: '----Вторник----', times: { create: this.initialTimes } },
+            { dayNumber: 3, dayName: '-----Среда-----', times: { create: this.initialTimes } },
+            { dayNumber: 4, dayName: '----Четверг----', times: { create: this.initialTimes } },
+            { dayNumber: 5, dayName: '----Пятница----', times: { create: this.initialTimes } },
+            { dayNumber: 6, dayName: '----Суббота----', times: { create: this.initialTimes } },
+            { dayNumber: 7, dayName: '--Воскресенье--', times: { create: this.initialTimes } }
           ]
         }
       } 
