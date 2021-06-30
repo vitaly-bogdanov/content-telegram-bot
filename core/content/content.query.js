@@ -8,14 +8,12 @@ export const contentQuery = async function(ctx) {
   const categoryTitle = ctx.message.text;
   await clearMessageAndOnceEventsHepler(this, id);
   const contents = await contentService.getContentByCategoryTitle(categoryTitle);
-
   let msgIds = [];
   for (let content of contents) {
-    let msgId = (await this.sendMessage(id, content.description, contentEditKeyboard)).message_id;
-    msgIds.push(msgId);
+    let msgDescriptionId = (await this.sendMessage(id, content.description, contentEditKeyboard)).message_id;
+    msgIds.push(msgDescriptionId);
   }
   setCacheMessageIdsHelper(id, msgIds);
-
   let msgId1 = (await this.sendMessage(id, categoryTitle, mainContentKeyboard)).message_id;
   setCacheMessageIdsHelper(id, [msgId1]);
 };
