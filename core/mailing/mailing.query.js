@@ -4,6 +4,9 @@ import { mainMailingKeyboard, managerConfigKeyboard } from './mailing.keyboard.j
 import { mailingService } from './mailing.service.js';
 
 export const mailingQuery = async function(ctx) {
+
+  console.log(ctx);
+
   const { id } = getUserHelper(ctx);
   await clearMessageAndOnceEventsHepler(this, id);
 
