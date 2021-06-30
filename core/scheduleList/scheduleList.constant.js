@@ -1,0 +1,1 @@
+export const SCHEDULE_LIST_ACTION_NAME = 'scheduleList';

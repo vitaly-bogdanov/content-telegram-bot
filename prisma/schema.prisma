@@ -33,9 +33,9 @@ model Manager {
 model Schedule {
   id        Int     @id @default(autoincrement())
   dayName   String
-  dayNumber Int
+  dayNumber Int     
   times     Time[]
-  managerId Int     @unique
+  managerId Int
   manager   Manager @relation(fields: [managerId], references: [id])
 }
 

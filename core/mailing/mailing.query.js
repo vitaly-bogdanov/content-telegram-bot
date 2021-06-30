@@ -10,9 +10,11 @@ export const mailingQuery = async function(ctx) {
   const managers = await mailingService.getManagers();
   let msgIds = [];
   for (let manager of managers) {
-    const managerDescription = `${manager.first_name} ${manager.last_name}\n@${manager.username}\nID: ${manager.telegram_id}`;
-    let msgId = (await this.sendMessage(id, managerDescription, managerConfigKeyboard(manager.username))).message_id;
-    msgIds.push(msgId);
+    const managerDescription = `${manager.first_name} ${manager.last_name}\nID: ${manager.telegram_id}`;
+    let msgId1 = (await this.sendMessage(id, managerDescription)).message_id;
+    msgIds.push(msgId1);
+    let msgId2 = (await this.sendMessage(id, manager.username, managerConfigKeyboard)).message_id;
+    msgIds.push(msgId2);
   }
   setCacheMessageIdsHelper(id, msgIds);
   let msgId1 = (await this.sendMessage(id, 'Рассылка', mainMailingKeyboard)).message_id;
