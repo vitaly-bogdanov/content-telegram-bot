@@ -1,0 +1,1 @@
+export const CHANGE_CATEGORY_ACTION_NAME = 'changeCategory';

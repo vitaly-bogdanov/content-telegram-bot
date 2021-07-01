@@ -1,10 +1,9 @@
-import { TIME_ACTION_NAME } from '../time/index.js';
 import { SCHEDULE_ACTION_NAME } from '../schedule/index.js';
 
-export const timeKeyboard = (times, scheduleId, dayName) => {
+export const selectCategoryKeyboard = (times, scheduleId, dayName) => {
   
   const buttons = times.reduce((memo, time) => {
-    memo.push([{ text: time.value, callback_data: `${TIME_ACTION_NAME}?timeId=${time.id}` }]);
+    memo.push([{ text: time.category ? time.category.title : 'Категория не назначенна', callback_data: 'ffdfdf' }]);
     return memo;
   }, []);
 
@@ -17,6 +16,5 @@ export const timeKeyboard = (times, scheduleId, dayName) => {
         ]
       ]
     }
-  }
-
-};
+  };
+}

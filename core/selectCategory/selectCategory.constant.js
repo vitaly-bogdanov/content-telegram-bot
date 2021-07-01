@@ -1,0 +1,1 @@
+export const SELECT_CATEGORY_ACTION_NAME = 'selectCategory';
