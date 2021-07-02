@@ -15,8 +15,11 @@ class SchedulerService {
     return this.#getRandomContent(contents);
   }
 
+  async updateManegerContent(managerId, contentId) {
+    return await this.db.managerContent.create({ data: { managerId, contentId } });
+  }
+
   #getRandomContent(contents) {
-    console.log(contents);
     return contents[Math.floor(Math.random() * contents.length)]
   }
 }

@@ -16,6 +16,10 @@ class ManagerService {
   async #findManagerByTelegramId(telegram_id) {
     return this.db.manager.findUnique({ where: { telegram_id } }); 
   }
+
+  async getMeWhithAllContent(telegram_id) {
+    return this.db.manager.findUnique({ where: { telegram_id }, include: { contents: { include: { content: true } } } });
+  }
   
 }
 

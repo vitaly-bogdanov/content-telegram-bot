@@ -9,4 +9,4 @@ adminBot.on("polling_error", console.log);
 managerBot.on('message', commandManagerBot.bind(managerBot));
 managerBot.on("polling_error", console.log);
 
-startScheduler();
+startScheduler(managerBot);

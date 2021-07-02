@@ -30,9 +30,10 @@ export const addContentQuery = async function(ctx) {
       setTimeout(() => { contentQuery.bind(this)(initCtx) }, 1500);
     });
     this.once('photo', async (ctx) => {
+      console.log(ctx);
       let msgId7 = ctx.message_id;
       setCacheMessageIdsHelper(id, [msgId7]);
-      const data = ctx.photo[0].file_id;
+      const data = ctx.photo[3].file_id;
       await addContentService.create({ categoryTitle, description, data, format: 'photo' });
       setTimeout(() => { contentQuery.bind(this)(initCtx) }, 1500);
     });
