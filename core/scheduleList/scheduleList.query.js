@@ -9,6 +9,6 @@ export const scheduleListQuery = async function(ctx) {
   await clearMessageAndOnceEventsHepler(this, id);
   const schedules = await scheduleListService.getScheduleByManagerId(managerId);
   const text = `ID менеджера: ${telegramId}\nВыберите день недели, который хотите настроить`;
-  let msgId1 = (await this.sendMessage(id, text, scheduleListKeyboard(schedules))).message_id;
+  let msgId1 = (await this.sendMessage(id, text, scheduleListKeyboard(schedules, managerId, telegramId))).message_id;
   setCacheMessageIdsHelper(id, [msgId1]);
 };

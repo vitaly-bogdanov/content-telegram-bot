@@ -15,6 +15,7 @@
     "bcrypt": "^5.0.1",
     "dotenv": "^10.0.0",
     "node-cache": "^5.1.2",
+    "node-cron": "^3.0.0",
     "node-telegram-bot-api": "^0.53.0",
     "prisma": "^2.25.0"
   },

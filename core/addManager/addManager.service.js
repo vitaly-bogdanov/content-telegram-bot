@@ -30,7 +30,7 @@ class AddManagerService {
             { dayNumber: 4, dayName: 'Четверг', times: { create: this.initialTimes } },
             { dayNumber: 5, dayName: 'Пятница', times: { create: this.initialTimes } },
             { dayNumber: 6, dayName: 'Суббота', times: { create: this.initialTimes } },
-            { dayNumber: 7, dayName: 'Воскресенье', times: { create: this.initialTimes } }
+            { dayNumber: 0, dayName: 'Воскресенье', times: { create: this.initialTimes } }
           ]
         }
       } 

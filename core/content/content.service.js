@@ -10,6 +10,10 @@ class ContentService {
     return category.contents;
   }
 
+  async deleteContentById(id) {
+    await this.db.content.delete({ where: { id: +id } });
+  }
+
 };
 
 export const contentService = new ContentService();
