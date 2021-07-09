@@ -7,6 +7,8 @@ export const addCategoryQuery = async function(ctx) {
   const { id } = getUserHelper(ctx);
   await clearMessageAndOnceEventsHepler(this, id);
 
+  console.log('hello9999');
+
   let msgId1 = (await this.sendMessage(id, 'Добавление. Введите название категории 👇', mainAddCategoryKeyboard)).message_id;
   setCacheMessageIdsHelper(id, [msgId1]);
   this.once('message', async (ctx) => {

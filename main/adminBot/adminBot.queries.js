@@ -38,6 +38,7 @@ const queries = {
 
 export const queryAdminBot = async function(ctx) {
   const { actionName, queryData } = getActionQueryNameAndData(ctx);
+  console.log('ggggg');
   ctx = { ...ctx, queryData };
   actionName && queries[actionName] && queries[actionName].bind(this)(ctx);
 };

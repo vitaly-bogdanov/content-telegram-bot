@@ -20,6 +20,10 @@ class ManagerService {
   async getMeWhithAllContent(telegram_id) {
     return this.db.manager.findUnique({ where: { telegram_id }, include: { contents: { include: { content: true } } } });
   }
+
+  async getMenagerWhithContent() {
+    
+  }
   
 }
 

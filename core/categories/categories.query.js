@@ -7,6 +7,8 @@ export const categoriesQuery = async function(ctx) {
   const { id } = getUserHelper(ctx);
   await clearMessageAndOnceEventsHepler(this, id);
 
+  console.log('hello');
+
   const categories = await categoriesService.getCategories();
   let msgIds = [];
   for (let category of categories) {
